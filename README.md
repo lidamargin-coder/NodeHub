@@ -4,11 +4,17 @@
   <p>Лаунчер и менеджер модов для BeamNG.drive с каталогом STMods.</p>
 
   <p>
-    <a href="https://github.com/lidamargin-coder/NodeHub/releases/latest">
-      <img src="https://img.shields.io/github/v/release/lidamargin-coder/NodeHub?color=1CE47E&label=Скачать%20v1.0.0&style=flat-square" alt="Download" />
+    <a href="https://github.com/lidamargin-coder/NodeHub/releases/latest/download/NodeHub_Setup_v1.0.0.exe">
+      <img src="https://img.shields.io/badge/Скачать%20NodeHub%20Setup-v1.0.0%20(25%20МБ)-1CE47E?style=for-the-badge&logo=windows&logoColor=041A0E&labelColor=0E1E16" height="36" alt="Скачать NodeHub Setup v1.0.0" />
     </a>
-    <img src="https://img.shields.io/badge/Windows-10%20%7C%2011%20(64--bit)-0A120E?style=flat-square&logo=windows&logoColor=1CE47E" alt="Platform" />
-    <img src="https://img.shields.io/badge/Qt-6.8%20%7C%20C%2B%2B17-0A120E?style=flat-square" alt="Tech" />
+  </p>
+
+  <p>
+    <a href="https://lidamargin-coder.github.io/NodeHub/">
+      <img src="https://img.shields.io/badge/Сайт%20проекта-GitHub%20Pages-0A120E?style=flat-square&logo=googlechrome&logoColor=1CE47E&labelColor=0E1E16" alt="Website" />
+    </a>
+    <img src="https://img.shields.io/badge/Windows-10%20%7C%2011%20(64--bit)-0A120E?style=flat-square&logo=windows&logoColor=1CE47E&labelColor=0E1E16" alt="Platform" />
+    <img src="https://img.shields.io/badge/Qt-6.8%20%7C%20C%2B%2B17-0A120E?style=flat-square&labelColor=0E1E16" alt="Tech" />
   </p>
 </div>
 
