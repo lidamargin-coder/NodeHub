@@ -5,6 +5,7 @@
 #include "ModListModel.h"
 #include "SettingsManager.h"
 #include "StmodsClient.h"
+#include "UpdateManager.h"
 #include <QObject>
 #include <QVariantMap>
 
@@ -14,6 +15,7 @@ class AppController : public QObject {
     Q_PROPERTY(SettingsManager* settings READ settings CONSTANT)
     Q_PROPERTY(DownloadManager* downloadManager READ downloadManager CONSTANT)
     Q_PROPERTY(InstalledModsManager* installedMods READ installedMods CONSTANT)
+    Q_PROPERTY(UpdateManager* updateManager READ updateManager CONSTANT)
 
     Q_PROPERTY(QString currentCategory READ currentCategory NOTIFY currentCategoryChanged)
     Q_PROPERTY(QString currentSort READ currentSort WRITE setSort NOTIFY currentSortChanged)
@@ -34,6 +36,7 @@ public:
     SettingsManager* settings() { return &m_settings; }
     DownloadManager* downloadManager() { return &m_downloadManager; }
     InstalledModsManager* installedMods() { return &m_installedMods; }
+    UpdateManager* updateManager() { return &m_updateManager; }
 
     QString currentCategory() const { return m_currentCategory; }
     QString currentSort() const { return m_currentSort; }
@@ -91,6 +94,7 @@ private:
     StmodsClient m_client;
     DownloadManager m_downloadManager;
     InstalledModsManager m_installedMods;
+    UpdateManager m_updateManager;
 
     QString m_currentCategory = "cars";
     QString m_currentSort = "newest"; // "newest", "popularity", "downloads"

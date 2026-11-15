@@ -163,6 +163,111 @@ Window {
                         onCloseClicked: rootWindow.close()
                     }
 
+                    // Automatic Background Update Banner
+                    Rectangle {
+                        id: updateBanner
+                        Layout.fillWidth: true
+                        visible: updateManager.isUpdating
+                        implicitHeight: visible ? 42 : 0
+                        color: updateManager.state === "ready" ? "#0F3D26" : "#0A1F16"
+                        border.width: 1
+                        border.color: updateManager.state === "ready" ? "#28F08B" : "#1CE47E"
+                        clip: true
+
+                        Behavior on implicitHeight { NumberAnimation { duration: 220; easing.type: Easing.OutCubic } }
+                        Behavior on color { ColorAnimation { duration: 160 } }
+
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.leftMargin: 18
+                            anchors.rightMargin: 16
+                            spacing: 12
+
+                            // High-tech glowing pulse dot
+                            Rectangle {
+                                width: 10
+                                height: 10
+                                radius: 5
+                                color: updateManager.state === "ready" ? "#28F08B" : "#1CE47E"
+                                Layout.alignment: Qt.AlignVCenter
+
+                                SequentialAnimation on opacity {
+                                    loops: Animation.Infinite
+                                    running: updateBanner.visible
+                                    NumberAnimation { from: 1.0; to: 0.25; duration: 600; easing.type: Easing.InOutQuad }
+                                    NumberAnimation { from: 0.25; to: 1.0; duration: 600; easing.type: Easing.InOutQuad }
+                                }
+                            }
+
+                            // Update Status Message
+                            Text {
+                                Layout.fillWidth: true
+                                text: updateManager.statusText
+                                color: "#FFFFFF"
+                                font.family: "Inter"
+                                font.pixelSize: 12
+                                font.weight: Font.Medium
+                                elide: Text.ElideRight
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            // Progress Bar when downloading
+                            Rectangle {
+                                visible: updateManager.state === "downloading"
+                                Layout.preferredWidth: 160
+                                height: 6
+                                radius: 3
+                                color: "#14281F"
+                                Layout.alignment: Qt.AlignVCenter
+
+                                Rectangle {
+                                    height: parent.height
+                                    radius: 3
+                                    width: parent.width * Math.min(1.0, Math.max(0.04, updateManager.progressPercent / 100.0))
+                                    color: "#1CE47E"
+
+                                    Behavior on width { NumberAnimation { duration: 120 } }
+                                }
+                            }
+
+                            // Percentage text
+                            Text {
+                                visible: updateManager.state === "downloading"
+                                text: updateManager.progressPercent + "%"
+                                color: "#1CE47E"
+                                font.family: "JetBrains Mono"
+                                font.pixelSize: 11
+                                font.bold: true
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            // Cancel update button (optional, only during downloading)
+                            Rectangle {
+                                visible: updateManager.state === "downloading"
+                                width: 22
+                                height: 22
+                                radius: 11
+                                color: cancelUpdMouse.containsMouse ? "#2E1A1A" : "transparent"
+                                Layout.alignment: Qt.AlignVCenter
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "✕"
+                                    color: cancelUpdMouse.containsMouse ? "#FF7373" : "#8FA399"
+                                    font.pixelSize: 11
+                                }
+
+                                MouseArea {
+                                    id: cancelUpdMouse
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: updateManager.cancelUpdate()
+                                }
+                            }
+                        }
+                    }
+
                     // Content row: Grid on left, Details Panel on right
                     RowLayout {
                         Layout.fillWidth: true

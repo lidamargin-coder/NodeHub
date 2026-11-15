@@ -32,6 +32,9 @@ qt_add_executable(NodeHub
     src/SettingsManager.cpp
     src/InstalledModsManager.h
     src/InstalledModsManager.cpp
+    src/UpdateManager.h
+    src/UpdateManager.cpp
+    src/AppVersion.h
     src/AppController.h
     src/AppController.cpp
     app.rc
@@ -72,3 +75,7 @@ target_link_libraries(NodeHub PRIVATE
     Qt6::Network
     Qt6::Widgets
 )
+
+if(WIN32)
+    target_link_libraries(NodeHub PRIVATE shell32)
+endif()

@@ -59,6 +59,11 @@ AppController::AppController(QObject* parent)
                 Q_UNUSED(modId);
                 showNotification(QStringLiteral("Ошибка установки «%1»:\n%2").arg(title, error), true);
             });
+
+    connect(&m_updateManager, &UpdateManager::messageRequested, this,
+            [this](const QString& text, bool isError) {
+                showNotification(text, isError);
+            });
 }
 
 void AppController::initialize() {
@@ -70,6 +75,9 @@ void AppController::initialize() {
     if (!m_settings.hasGamePath()) {
         emit requestFolderSetup();
     }
+
+    // Auto-check for launcher updates on every startup silently
+    m_updateManager.checkUpdates(true);
 }
 
 void AppController::selectCategory(const QString& slug) {

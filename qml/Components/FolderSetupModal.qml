@@ -266,6 +266,73 @@ Item {
                 }
             }
 
+            // Version and Manual Update Section
+            Rectangle {
+                Layout.fillWidth: true
+                height: 40
+                radius: 8
+                color: "#0B110E"
+                border.width: 1
+                border.color: "#18241E"
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 12
+                    anchors.rightMargin: 12
+                    spacing: 8
+
+                    Text {
+                        text: "Версия лаунчера:"
+                        color: "#7E9489"
+                        font.family: "Inter"
+                        font.pixelSize: 11
+                    }
+
+                    Text {
+                        text: "v" + updateManager.currentVersion
+                        color: "#1CE47E"
+                        font.family: "JetBrains Mono"
+                        font.pixelSize: 11
+                        font.weight: Font.Bold
+                    }
+
+                    Item { Layout.fillWidth: true }
+
+                    // Check update button
+                    Rectangle {
+                        implicitWidth: updBtnTxt.implicitWidth + 20
+                        implicitHeight: 28
+                        radius: 6
+                        color: updBtnMouse.pressed ? "#163827" : (updBtnMouse.containsMouse ? "#1E4733" : "#132E21")
+                        border.width: 1
+                        border.color: updBtnMouse.containsMouse ? "#28F08B" : "#1CE47E"
+
+                        Behavior on color { ColorAnimation { duration: 100 } }
+                        Behavior on border.color { ColorAnimation { duration: 100 } }
+
+                        Text {
+                            id: updBtnTxt
+                            anchors.centerIn: parent
+                            text: updateManager.state === "checking" ? "Проверка..." :
+                                  (updateManager.state === "downloading" ? "Загрузка..." : "Проверить обновления")
+                            color: "#FFFFFF"
+                            font.family: "Inter"
+                            font.pixelSize: 11
+                            font.weight: Font.Medium
+                        }
+
+                        MouseArea {
+                            id: updBtnMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            enabled: !updateManager.isUpdating
+                            onClicked: updateManager.checkUpdates(false)
+                        }
+                    }
+                }
+            }
+
             // Save CTA Button
             Rectangle {
                 Layout.fillWidth: true

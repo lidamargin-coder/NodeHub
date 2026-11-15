@@ -93,6 +93,7 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("downloadManager", controller.downloadManager());
     engine.rootContext()->setContextProperty("downloader", controller.downloadManager()); // alias
     engine.rootContext()->setContextProperty("installedMods", controller.installedMods());
+    engine.rootContext()->setContextProperty("updateManager", controller.updateManager());
 
     const QUrl url(QStringLiteral("qrc:/NodeHub/qml/Main.qml"));
     QObject::connect(
