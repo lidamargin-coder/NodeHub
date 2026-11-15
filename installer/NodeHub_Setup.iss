@@ -2,7 +2,7 @@
 ; Inno Setup 6.x
 
 #define MyAppName "NodeHub"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "NodeHub"
 #define MyAppExeName "NodeHub.exe"
 #define MyDistDir "..\dist\NodeHub"
@@ -28,7 +28,7 @@ PrivilegesRequiredOverridesAllowed=dialog
 
 ; Output file settings
 OutputDir=..\dist
-OutputBaseFilename=NodeHub_Setup_v1.0.0
+OutputBaseFilename=NodeHub_Setup_v1.1.0
 SetupIconFile=..\logos\app.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 

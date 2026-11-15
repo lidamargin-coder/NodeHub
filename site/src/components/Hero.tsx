@@ -14,7 +14,7 @@ export function Hero() {
 
       <div className="flex flex-col items-center gap-3">
         <a
-          href="https://github.com/lidamargin-coder/NodeHub/releases/latest/download/NodeHub_Setup_v1.0.0.exe"
+          href="https://github.com/lidamargin-coder/NodeHub/releases/latest/download/NodeHub_Setup_v1.1.0.exe"
           download
           className="font-display inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-[#1CE47E] text-[#041A0E] font-bold text-sm hover:bg-[#32EA8D] transition-colors duration-150"
         >
@@ -23,7 +23,7 @@ export function Hero() {
         </a>
 
         <p className="font-sans text-xs text-[#6E8579] tabular-nums">
-          v1.0.0 · 64-bit · 25 МБ
+          v1.1.0 · 64-bit · 25 МБ
         </p>
       </div>
     </section>

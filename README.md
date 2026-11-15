@@ -4,8 +4,8 @@
   <p>Лаунчер и менеджер модов для BeamNG.drive с каталогом STMods.</p>
 
   <p>
-    <a href="https://github.com/lidamargin-coder/NodeHub/releases/latest/download/NodeHub_Setup_v1.0.0.exe">
-      <img src="https://img.shields.io/badge/Скачать%20NodeHub%20Setup-v1.0.0%20(25%20МБ)-1CE47E?style=for-the-badge&logo=windows&logoColor=041A0E&labelColor=0E1E16" height="36" alt="Скачать NodeHub Setup v1.0.0" />
+    <a href="https://github.com/lidamargin-coder/NodeHub/releases/latest/download/NodeHub_Setup_v1.1.0.exe">
+      <img src="https://img.shields.io/badge/Скачать%20NodeHub%20Setup-v1.1.0%20(25%20МБ)-1CE47E?style=for-the-badge&logo=windows&logoColor=041A0E&labelColor=0E1E16" height="36" alt="Скачать NodeHub Setup v1.1.0" />
     </a>
   </p>
 
@@ -30,6 +30,7 @@
 - **Автосортировка**: карты направляются в `content/levels`, техника — в `content/vehicles`.
 - **Менеджер установленных модов**: мгновенное сканирование, переключение (`.zip` ↔ `.zip.disabled`) без удаления.
 - **Запуск игры**: автопоиск 64-битного бинарника BeamNG.drive и запуск в один клик.
+- **Автообновление**: фоновая проверка и установка новых версий при запуске.
 
 ## Сборка из исходников
 
@@ -38,7 +39,7 @@
 ```cmd
 build.bat            # Сборка NodeHub.exe в папку build/
 build_dist.bat       # Автономный дистрибутив с Qt runtime в dist/NodeHub/
-build_installer.bat  # Сборка Windows Setup в dist/NodeHub_Setup_v1.0.0.exe
+build_installer.bat  # Сборка Windows Setup в dist/NodeHub_Setup_v1.1.0.exe
 ```
 
 ## Правовой статус

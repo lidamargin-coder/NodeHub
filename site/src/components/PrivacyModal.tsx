@@ -92,7 +92,7 @@ export function PrivacyModal({ isOpen, onClose }: PrivacyModalProps) {
         </div>
 
         <div className="px-6 py-3.5 border-t border-[#18261E] bg-[#070C0A] flex items-center justify-between">
-          <span className="text-xs text-[#6E8579]">NodeHub v1.0.0</span>
+          <span className="text-xs text-[#6E8579]">NodeHub v1.1.0</span>
           <button
             type="button"
             onClick={onClose}

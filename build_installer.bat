@@ -17,7 +17,7 @@ echo ==========================================================
 echo [2/2] Compiling Windows Setup Installer with Inno Setup...
 echo ==========================================================
 
-set "ISCC_PATH=C:\Users\Богдаша\AppData\Local\Programs\Inno Setup 6\ISCC.exe"
+set "ISCC_PATH=C:\Users\Р‘РѕРіРґР°С€Р°\AppData\Local\Programs\Inno Setup 6\ISCC.exe"
 if not exist "%ISCC_PATH%" (
     set "ISCC_PATH=C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
 )
@@ -39,6 +39,6 @@ if errorlevel 1 (
 echo.
 echo ==========================================================
 echo Setup Installer successfully built!
-echo Installer path: %ROOT_DIR%\dist\NodeHub_Setup_v1.0.0.exe
+echo Installer path: %ROOT_DIR%\dist\NodeHub_Setup_v1.1.0.exe
 echo ==========================================================
 exit /b 0
