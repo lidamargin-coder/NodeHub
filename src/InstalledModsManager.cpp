@@ -312,7 +312,7 @@ QString InstalledModsManager::cleanModTitle(const QString& filename) {
 
 QString InstalledModsManager::normalizeString(const QString& str) {
     QString s = str.toLower();
-    s.remove(QRegularExpression(R"([^\w\d])"));
+    s.remove(QRegularExpression(R"([^\p{L}\p{N}])"));
     return s;
 }
 
@@ -422,7 +422,7 @@ bool InstalledModsManager::isModInstalled(const QString& modId,
 
     for (const auto& it : m_items) {
         // 1. Exact modId match
-        if (!it.modId.isEmpty() && it.modId == modId) {
+        if (!it.modId.isEmpty() && !modId.isEmpty() && it.modId == modId) {
             return true;
         }
 
@@ -437,24 +437,37 @@ bool InstalledModsManager::isModInstalled(const QString& modId,
             }
         }
 
-        // 3. Slug / normalized string matching
         QString itNormFn = normalizeString(it.filename);
         QString itNormTitle = normalizeString(it.title);
 
+        // 3. Exact normalized filename match
         if (!normFn.isEmpty() && itNormFn == normFn) {
             return true;
         }
 
-        // Fuzzy match: if slug contains a significant part of the filename or title
-        if (!normModId.isEmpty() && normModId.length() > 8) {
-            if (itNormFn.contains(normModId) || normModId.contains(itNormFn)) {
+        // 4. Exact normalized title match (must be at least 4 chars)
+        if (!normTitle.isEmpty() && normTitle.length() >= 4 && normTitle == itNormTitle) {
+            return true;
+        }
+
+        // 5. Slug match: if modId contains exact itNormFn or vice-versa
+        if (!normModId.isEmpty() && normModId.length() >= 12 &&
+            !itNormFn.isEmpty() && itNormFn.length() >= 10) {
+            if (normModId.contains(itNormFn) || itNormFn.contains(normModId)) {
                 return true;
             }
         }
-        if (!normTitle.isEmpty() && normTitle.length() > 6) {
-            if (itNormTitle.contains(normTitle) || normTitle.contains(itNormTitle) ||
-                itNormFn.contains(normTitle) || normTitle.contains(itNormFn)) {
-                return true;
+
+        // 6. Title matching: only if BOTH are sufficiently long (>= 8 chars) and one contains the other,
+        // and the shorter string is at least 75% the length of the longer string
+        if (!normTitle.isEmpty() && !itNormTitle.isEmpty() &&
+            normTitle.length() >= 8 && itNormTitle.length() >= 8) {
+            int minLen = std::min(normTitle.length(), itNormTitle.length());
+            int maxLen = std::max(normTitle.length(), itNormTitle.length());
+            if ((double)minLen / maxLen >= 0.75) {
+                if (normTitle.contains(itNormTitle) || itNormTitle.contains(normTitle)) {
+                    return true;
+                }
             }
         }
     }
